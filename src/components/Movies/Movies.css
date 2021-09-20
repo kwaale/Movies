@@ -33,14 +33,18 @@
     padding-right: 10px;
 }
 
-.favorite-true{
+.favorite-false{
     background: maroon;
+    font-size: small;
+    color: white;
     height: 35px;
     width: 100%;
 }
 
-.favorite-false{
+.favorite-true{
     background: blue;
+    font-size: medium;
+    color: yellow;
     height: 35px;
     width: 100%;
 }

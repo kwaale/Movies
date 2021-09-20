@@ -42,7 +42,7 @@ const Movies = () => {
                 <div className='movie-container' key={movie.imdbID}>
                   {card(movie)}
                   <button
-                    className='favorite-false'
+                    className='favorite-true'
                     onClick={() => movieFavorite( movie)}>&#11088;</button>
                 </div>
               )
@@ -51,8 +51,8 @@ const Movies = () => {
                 <div className='movie-container' key={movie.imdbID}>
                   {card(movie)}
                   <button
-                    className='favorite-true'
-                    onClick={() => movieFavorite( movie )}>&#9733;</button>
+                    className='favorite-false'
+                    onClick={() => movieFavorite( movie )}>&#11088;</button>
                 </div>
               )
             }
