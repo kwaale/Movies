@@ -76,13 +76,15 @@ ReactDOM.render(
 
   
 ##Crear reduccer
+
+
+```js
 const initialState = {
     moviesFavorite: JSON.parse(localStorage.getItem('movies')) || [],
     moviesLoaded: [],
     movieDetail: {}
   };
 
-```js
 function <nombre-reducer>Reducer(state = initialState, action) {
   if (action.type === "ADD_MOVIE_FAVORITE") {
       return {
