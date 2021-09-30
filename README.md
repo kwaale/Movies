@@ -20,9 +20,91 @@ Para verla en funcionamiento es tan simple con hacer click *[aqui](https://movie
 
 ## Instalar React Redux
 ```js
-npm install 
+npm install redux react-redux --save
+//Si se van a hacer consultas alguna API hace falta installar
+npm install --save redux-thunk
 ```
 
+### Root reducer el reducer
+
+  ##Crear archivo index.js combine reducers
+```js
+import { combineReducers } from "redux";
+
+const rootReducers = combineReducers({
+    //user: userReducer,
+});
+
+export default rootReducers;
+```
+  
+### Crear store
+  ## En carpeta Store, un index
+
+```js
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk'
+import rootReducer from './reducers';
+
+//Dev tools
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
+//Store
+const store = createStore(
+    rootReducer,
+    composeEnhancers(applyMiddleware(thunk))
+);
+
+export default store;
+```
+  
+### Conectamos la store a la app,en archivo index
+
+```js
+import store from './store';
+import { Provider } from 'react-redux';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+  
+##Crear reduccer
+const initialState = {
+    moviesFavorite: JSON.parse(localStorage.getItem('movies')) || [],
+    moviesLoaded: [],
+    movieDetail: {}
+  };
+
+```js
+function <nombre-reducer>Reducer(state = initialState, action) {
+  if (action.type === "ADD_MOVIE_FAVORITE") {
+      return {
+        ...state,
+        movies: state.movies.concat(action.payload)
+      }
+  }
+  if (action.type === "GET_MOVIES") {
+      return {
+        ...state,
+        moviesLoaded: action.payload.Search
+      };
+  }
+  return state;
+}
+
+export default rootReducer;
+```
+  
+
+  
+  
 ### Comenzamos por actions
 
 ```js
@@ -41,55 +123,3 @@ export function getMovies(titulo) {
 }
 ```
 
-### Seguimos con el reducer
-
-```js
-function rootReducer(state = initialState, action) {
-  if (action.type === "ADD_MOVIE_FAVORITE") {
-      return {
-        ...state,
-        movies: state.movies.concat(action.payload)
-      }
-  }
-  if (action.type === "GET_MOVIES") {
-      return {
-        ...state,
-        moviesLoaded: action.payload.Search
-      };
-  }
-  return state;
-}
-
-export default rootReducer;
-```
-
-### Seguimos con la store
-
-```js
-import { createStore } from "redux";
-
-const store = createStore();
-
-export default store;
-
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
-
-export default store;
-```
-
-### Conectamos la store a la app
-
-```js
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
-);
-```
