@@ -25,7 +25,17 @@ npm install redux react-redux --save
 npm install --save redux-thunk
 ```
 
-### Root reducer el reducer
+### Crear las carpetas y archivos
+  - store
+    -index.js
+  - reducer
+    -index.js
+  - actions
+    -index.js
+  
+  
+  
+  ### Root reducer el reducer
 
   ##Crear archivo index.js combine reducers
 ```js
