@@ -1,4 +1,4 @@
-# Movies SPA de busqueda de peliculas
+# Movies Single Page Aplications de busqueda de peliculas
 
 ## *[Deploy - Ver en web](https://movies-search-nine.vercel.app/)*
 
@@ -25,19 +25,20 @@ npm install redux react-redux --save
 npm install --save redux-thunk
 ```
 
-### Crear las carpetas y archivos
-  - store
-    -index.js
-  - reducer
-    -index.js
-  - actions
-    -index.js
+## Crear las carpetas y archivos
+  - redux
+    - store
+      -index.js
+    - reducer
+      -index.js
+    - actions
+      -index.js
   
   
   
-  ### Root reducer el reducer
+## Combine reducer el reducer
+### Crear archivo index.js en reducers
 
-  ##Crear archivo index.js combine reducers
 ```js
 import { combineReducers } from "redux";
 
@@ -48,12 +49,12 @@ const rootReducers = combineReducers({
 export default rootReducers;
 ```
   
-### Crear store
-  ## En carpeta Store, un index
+## Crear store
+### En carpeta Store, un index
 
 ```js
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 //Dev tools
@@ -68,7 +69,8 @@ const store = createStore(
 export default store;
 ```
   
-### Conectamos la store a la app,en archivo index
+## Conectamos la store a la app
+## En archivo index de react
 
 ```js
 import store from './store';
@@ -84,11 +86,11 @@ ReactDOM.render(
 );
 ```
 
-  
-##Crear reduccer
-
+## Reduccer
+### En la carpeta reducer, agregar cada reducer en archivos nuevos
 
 ```js
+// Sintaxis
 const initialState = {
     moviesFavorite: JSON.parse(localStorage.getItem('movies')) || [],
     moviesLoaded: [],
@@ -113,11 +115,10 @@ function <nombre-reducer>Reducer(state = initialState, action) {
 
 export default rootReducer;
 ```
-  
+## Actions
 
-  
-  
-### Comenzamos por actions
+### Sintaxis actions
+
 
 ```js
 export function addMovieFavorite(payload) {
@@ -134,4 +135,3 @@ export function getMovies(titulo) {
   };
 }
 ```
-
