@@ -73,16 +73,21 @@ export default store;
 ## En archivo index de react
 
 ```js
-import store from './store';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import store from './redux/store';
 import { Provider } from 'react-redux';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
 ```
 
